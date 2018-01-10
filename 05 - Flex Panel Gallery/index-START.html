@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels 💪</title>
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700i' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background:#0e1111;
+      font-family:'helvetica neue';
+      text-shadow:0 0 4px rgba(0, 0, 0, 0.8), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 20px;
+      font-weight: 200;
+    }
+    body {
+      margin: 0;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    /*look up flexbox.io*/
+    .panels {
+      min-height:100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      background: #0e1111;
+      box-shadow:inset 0 0 0 5px rgba(255,255,255,0.1);
+      color:white;
+      text-align: center;
+      align-items:center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size:cover;
+      background-position:center;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    /*.panel1 { 
+      background-image:url(https://images.unsplash.com/photo-1457986828214-c743e4375f5f?auto=format&fit=crop&w=1234&q=80); 
+    }
+    .panel2 { 
+      background-image:url(https://images.unsplash.com/photo-1490822180406-880c226c150b?auto=format&fit=crop&w=1290&q=80);
+    }
+    .panel3 { 
+      background-image:url(https://images.unsplash.com/photo-1493928841026-e1ab0a590a61?auto=format&fit=crop&w=1234&q=80); 
+    }
+    .panel4 { 
+      background-image:url(https://images.unsplash.com/photo-1501975558162-0be7b8ca95ea?auto=format&fit=crop&w=1234&q=80); 
+    }
+    .panel5 { 
+      background-image:url(https://images.unsplash.com/photo-1504293538349-0be9a181d474?dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb); 
+    }
+*/
+    .panel > * {
+      margin:0;
+      width: 100%;
+      transition:transform 0.5s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 0 auto;
+    }
+
+    .panel > *:first-child {
+      transform: translateY(-100%);
+    }
+
+    .panel.open-active > *:first-child {
+      transform: translateY(0);
+    }
+
+    .panel > *:last-child {
+      transform: translateY(100%);
+    }
+
+    .panel.open-active > *:last-child {
+      transform: translateY(0);
+    }
+
+    .panel h4 {
+      text-transform: lowercase;
+      font-family: 'Playfair Display', cursive;
+      text-shadow:0 0 4px rgba(0, 0, 0, 0.8), 0 0 14px rgba(0, 0, 0, 0.45);
+      /*text-shadow:0 0 4px #0fc, 0 0 4px #0fc;*/
+      font-size: 2em;
+    }
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+
+    .panel.open {
+      font-size:40px;
+      flex: 5;
+    }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>don't know how</p>
+      <h4>I</h4>
+      <p>got here</p>
+    </div>
+    <div class="panel panel2">
+      <p>i dont</p>
+      <h4>Wanna</h4>
+      <p>feel like this</p>
+    </div>
+    <div class="panel panel3">
+      <p>made with love,</p>
+      <h4>Fall</h4>
+      <p>2017</p>
+    </div>
+    <div class="panel panel4">
+      <p>i blame you</p>
+      <h4>For</h4>
+      <p>everything</p>
+    </div>
+    <div class="panel panel5">
+      <p>don't forget</p>
+      <h4>You</h4>
+      <p>got me, though</p>
+    </div>
+  </div>
+
+  <script>
+    //REMEMBER!!! this will return a nodelist, not an array
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen(){
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e){
+      if(e.propertyName.includes('flex')){
+        this.classList.toggle('open-active');
+      }
+    }
+
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+
+  </script>
+
+
+
+</body>
+</html>
