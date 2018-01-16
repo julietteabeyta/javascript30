@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+	<p><small>type "juliette"</small></p>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Playfair+Display:900i');
+		body{
+			height: 100vh;
+			width: 100vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			font-family: 'Playfair Display', cursive;
+		}
+	</style>
+<script>
+	//When someone inputs a sequence of keys, something needs to happen
+	//this is used for KONAMI code??? key sequences (like in video games)
+	//that cause the web page (or whatever) to do something
+
+	const pressed = [];
+	const secretCode = 'juliette';
+
+	window.addEventListener('keyup', (e) => {
+		pressed.push(e.key);
+		pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+		if(pressed.join('').includes(secretCode)){
+			cornify_add();
+		}
+	});
+</script>
+</body>
+</html>
