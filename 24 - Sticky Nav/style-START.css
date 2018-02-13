@@ -29,7 +29,7 @@ body {
 
 header {
   text-align: center;
-  height:50vh;
+  height:20vh;
   background:url(http://wes.io/iEgP/wow-so-deep.jpg) bottom center no-repeat;
   background-size:cover;
   display:flex;
@@ -39,7 +39,6 @@ header {
 
 h1 {
   color:white;
-  font-size: 7vw;
   text-shadow: 3px 4px 0 rgba(0,0,0,0.2)
 }
 
@@ -89,7 +88,7 @@ li.logo a {
   color:black;
 }
 
-nav a {
+nav a{
   text-decoration: none;
   padding:20px;
   display: inline-block;
@@ -97,3 +96,37 @@ nav a {
   transition:all 0.2s;
   text-transform: uppercase;
 }
+
+p a{
+  text-decoration: none;
+}
+
+.align-left {
+  float:left;
+  margin-right:20px;
+}
+
+.align-right {
+  float:right;
+  margin-left:20px;
+}
+
+.slide-in {
+  opacity:0;
+  transition:all .5s;
+}
+
+.align-left.slide-in {
+  transform:translateX(-30%) scale(0.95);
+}
+.align-right.slide-in {
+  transform:translateX(30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity:1;
+  transform:translateX(0%) scale(1);
+}
+
+
+
